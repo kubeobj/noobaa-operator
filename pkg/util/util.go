@@ -1854,12 +1854,15 @@ func NooBaaCondition(noobaa *nbv1.NooBaa, t conditionsv1.ConditionType, s corev1
 
 // GetNooBaaExternalPgSecret returns the secret and adding the namespace if it is missing
 func GetNooBaaExternalPgSecret(nb *nbv1.NooBaa) *corev1.SecretReference {
-	secretRef := &corev1.SecretReference{
-		Name:      nb.Spec.ExternalPgSecret.Name,
-		Namespace: nb.Spec.ExternalPgSecret.Namespace,
-	}
-	if secretRef.Namespace == "" {
-		secretRef.Namespace = nb.Namespace
+	var secretRef *corev1.SecretReference
+	if nb.Spec.ExternalPgSecret != nil {
+		secretRef = &corev1.SecretReference{
+			Name:      nb.Spec.ExternalPgSecret.Name,
+			Namespace: nb.Spec.ExternalPgSecret.Namespace,
+		}
+		if secretRef.Namespace == "" {
+			secretRef.Namespace = nb.Namespace
+		}
 	}
 	return secretRef
 }

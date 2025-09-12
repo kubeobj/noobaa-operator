@@ -5150,7 +5150,6 @@ spec:
                   name: noobaa-config
                   key: NOOBAA_LOG_COLOR
             - name: POSTGRES_HOST
-              value: "noobaa-db-pg-0.noobaa-db-pg"
             - name: POSTGRES_PORT
             - name: POSTGRES_DBNAME
             - name: POSTGRES_USER
@@ -6847,4 +6846,3 @@ metadata:
     app: prometheus-adapter
   name: custom-metrics-prometheus-adapter
 `
-
